@@ -1,2 +1,2 @@
 # Risk-Analysis-Calculations
-Risk Analysis Calculations based on Kang et al. (2024)
+version initiale du code de calculs de analyse et gestion des risques basé au article de Kang (2024)
