@@ -7,10 +7,10 @@ import openpyxl as xls
 # opportunity for improvement here
 folder = "Matrices/"
 
-data_ranges = ["E11:W29", "E11:W29", "E11:W29"]
-sheet_names = ["Feuil1", "Feuil1", "Feuil1"]
-book_paths = ["DEMATEL Matrix - V_FWBL.xlsx", "DEMATEL Matrix.xlsx", "Copie de DEMATEL Matrix-soucy.xlsx"]
-weights = [0.2, 0.35, 0.35]
+data_ranges = ["E11:W29", "E11:W29", "E11:W29", "E11:W29"]
+sheet_names = ["Feuil1", "Feuil1", "Feuil1", "Feuil1"]
+book_paths = ["DEMATEL Matrix - V_FWBL.xlsx", "DEMATEL Matrix.xlsx", "Copie de DEMATEL Matrix-soucy.xlsx", "DEMATEL Matrix_CAS.xlsx"]
+weights = [0.2, 0.35, 0.35, 0.1]
 
 B = np.zeros((1,1))
 
