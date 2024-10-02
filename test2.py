@@ -5,32 +5,44 @@ import openpyxl as xls
 
 # load the excel workbook
 # opportunity for improvement here
-book = xls.load_workbook("libro.xlsx")
-print(book)
-# search sheet
-print(book.sheetnames)
-hoja = book.sheetnames[0]
-#hoja = "hojita2"
-#hoja = book.sheetnames[2]
-# Code to select a sheet. 
-# opportunity for improvement here
-sheet = book[hoja]
+folder = "Matrices/"
 
-# code to select square range. 
-# opportunity for improvement here
-cells = sheet["B2:AA27"]
-#cells = sheet["A1:O15"]
-#cells = sheet["A1:AH34"]
+data_ranges = ["E11:W29", "E11:W29", "E11:W29"]
+sheet_names = ["Feuil1", "Feuil1", "Feuil1"]
+book_paths = ["DEMATEL Matrix - V_FWBL.xlsx", "DEMATEL Matrix.xlsx", "Copie de DEMATEL Matrix-soucy.xlsx"]
+weights = [0.2, 0.35, 0.35]
+
+B = np.zeros((1,1))
+
+for i,data_range in enumerate(data_ranges):
+    book = xls.load_workbook(folder + book_paths[i])
+    sheet = book[sheet_names[i]]
+    print(sheet)
+    # Code to select several sheets. 
+    # opportunity for improvement here
+    # code to select square range. 
+    # opportunity for improvement here
+    cells = sheet[data_range]
+    data_rows = []
+    for row in cells:
+        data_cols = []
+        for cell in row:
+            data_cols.append(cell.value)
+        data_rows.append(data_cols)
+    temp_matrix = np.array(data_rows)
+    print(temp_matrix)
+    if i == 0 :
+        B.resize(temp_matrix.shape)
+        print(B)
+    B += temp_matrix * weights[i]
 
 
-data_rows = []
-for row in cells:
-    data_cols = []
-    for cell in row:
-        data_cols.append(cell.value)
-    data_rows.append(data_cols)
+print(B)
 
-B = np.array(data_rows)
+B = np.int32(np.rint(B))
+print(B)
+
+_ = input()
 
 rows, columns = B.shape
 
@@ -225,20 +237,3 @@ print("\n\n")
 print("Hierarchy")
 for level in structure:
     print(level)
-
-
-
-
-
-
-'''
-A = []
-for i in range(len(R)) :
-    R_set = set(R[i])
-    Cl_set = set(COLLSET[i])
-    if R_set == Cl_set :
-        print(f"S{i} is removed")
-    else :
-        risk_dict = dict(name = f"S{i}", ri = R[i], si = S[i], cli = COLLSET[i])
-        A.append(risk_dict)
-'''
